@@ -20,7 +20,7 @@ public class AppApplicationTests {
 	private TestRestTemplate template;
 
 	@Test
-	public void contextLoads() {
+	public void testOWN() {
 		ResponseEntity<ApiDTO> response = template.getForEntity(
 				"http://api.openweathermap.org/data/2.5/weather?q=Istanbul&units=metric&appid=c171c400bd485abf40143f6a1e4cc726",
 				ApiDTO.class);

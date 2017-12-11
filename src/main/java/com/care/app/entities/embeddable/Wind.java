@@ -9,7 +9,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Wind {
 
-  @Column(name = "speed", columnDefinition = "FLOAT(2,2)")
+  @Column(name = "speed", columnDefinition = "FLOAT")
   private Float speed;
 
   @Column(name = "degree", columnDefinition = "SMALLINT(3)")

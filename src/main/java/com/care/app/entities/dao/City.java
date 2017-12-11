@@ -3,6 +3,7 @@ package com.care.app.entities.dao;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,7 +40,7 @@ public class City {
   @Column(name = "sunset", columnDefinition = "TIMESTAMP")
   private Date sunset;
 
-  @OneToMany(mappedBy = "city", targetEntity = Weather.class)
+  @OneToMany(mappedBy = "city", targetEntity = Weather.class, cascade = CascadeType.REMOVE)
   private List<Weather> weathers;
 
   /**

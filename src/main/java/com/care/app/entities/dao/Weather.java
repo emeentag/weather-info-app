@@ -1,11 +1,13 @@
 package com.care.app.entities.dao;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.care.app.entities.embeddable.Cloud;
@@ -31,7 +33,7 @@ public class Weather {
   @Column(columnDefinition = "VARCHAR(15)")
   private String description;
 
-  @Column(columnDefinition = "FLOAT(3,2)")
+  @Column(columnDefinition = "FLOAT")
   private Float temprature;
 
   @Column(columnDefinition = "SMALLINT(3)")
@@ -49,7 +51,8 @@ public class Weather {
   @Embedded
   private Wind wind;
 
-  @ManyToOne(targetEntity = City.class)
+  @ManyToOne(targetEntity = City.class, cascade = CascadeType.PERSIST)
+  @JoinColumn(name = "city_id", referencedColumnName = "id")
   private City city;
 
   /**

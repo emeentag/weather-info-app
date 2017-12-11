@@ -9,10 +9,10 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Location {
 
-  @Column(name = "lng", columnDefinition = "FLOAT(2,2)")
+  @Column(name = "lng", columnDefinition = "FLOAT")
   private Float lng;
 
-  @Column(name = "lat", columnDefinition = "FLOAT(2,2)")
+  @Column(name = "lat", columnDefinition = "FLOAT")
   private Float lat;
 
   /**

@@ -9,8 +9,8 @@ import com.care.app.entities.embeddable.Location;
 import com.care.app.entities.embeddable.Wind;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * WeatherDTO
@@ -155,7 +155,7 @@ public class ApiDTO {
     return windDTO;
   }
 
-  static class Map {
+  public static class Map {
 
     public static Weather toDAO(ApiDTO apiDTO) {
 
@@ -166,14 +166,7 @@ public class ApiDTO {
       weatherDAO.setCode(apiDTO.getWeatherDTOs().get(0).getCode());
       weatherDAO.setHumadity(apiDTO.getMainDTO().getHumadity());
       weatherDAO.setTemprature(apiDTO.getMainDTO().getTemprature());
-
-      City cityDAO = new City();
-      cityDAO.setCityId(apiDTO.getCityId());
-      cityDAO.setCityName(apiDTO.getCityName());
-      cityDAO.setCountryCode(apiDTO.getSysDTO().getCountryCode());
-      cityDAO.setSunrise(apiDTO.getSysDTO().getSunrise());
-      cityDAO.setSunset(apiDTO.getSysDTO().getSunset());
-      weatherDAO.setCity(cityDAO);
+      weatherDAO.setPressure(apiDTO.getMainDTO().getPressure());
 
       Cloud cloud = new Cloud();
       cloud.setPercent(apiDTO.getCloudDTO().getPercent());
@@ -188,6 +181,15 @@ public class ApiDTO {
       wind.setDegree(apiDTO.getWindDTO().getDegree());
       wind.setSpeed(apiDTO.getWindDTO().getSpeed());
       weatherDAO.setWind(wind);
+
+      City cityDAO = new City();
+      cityDAO.setCityId(apiDTO.getCityId());
+      cityDAO.setCityName(apiDTO.getCityName());
+      cityDAO.setCountryCode(apiDTO.getSysDTO().getCountryCode());
+      cityDAO.setSunrise(apiDTO.getSysDTO().getSunrise());
+      cityDAO.setSunset(apiDTO.getSysDTO().getSunset());
+
+      weatherDAO.setCity(cityDAO);
 
       return weatherDAO;
     }
