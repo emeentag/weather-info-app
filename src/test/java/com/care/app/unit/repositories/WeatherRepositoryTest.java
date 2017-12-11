@@ -62,6 +62,7 @@ public class WeatherRepositoryTest {
     Assert.assertEquals(Integer.valueOf(800), apiDto.getWeatherDTOs().get(0).getCode());
     Assert.assertEquals("Clear", apiDto.getWeatherDTOs().get(0).getDefinition());
     Assert.assertEquals("clear sky", apiDto.getWeatherDTOs().get(0).getDescription());
+    Assert.assertEquals("01n", apiDto.getWeatherDTOs().get(0).getIcon());
     Assert.assertEquals(Float.valueOf(41.01f), apiDto.getLocationDTO().getLat());
     Assert.assertEquals(Float.valueOf(28.95f), apiDto.getLocationDTO().getLng());
 
@@ -81,6 +82,7 @@ public class WeatherRepositoryTest {
     Assert.assertEquals(Integer.valueOf(800), weather.getCode());
     Assert.assertEquals("Clear", weather.getDefinition());
     Assert.assertEquals("clear sky", weather.getDescription());
+    Assert.assertEquals("01n", weather.getIcon());
     Assert.assertEquals(Float.valueOf(41.01f), weather.getLocation().getLat());
     Assert.assertEquals(Float.valueOf(28.95f), weather.getLocation().getLng());
 

@@ -163,6 +163,7 @@ public class ApiDTO {
 
       weatherDAO.setDefinition(apiDTO.getWeatherDTOs().get(0).getDefinition());
       weatherDAO.setDescription(apiDTO.getWeatherDTOs().get(0).getDescription());
+      weatherDAO.setIcon(apiDTO.getWeatherDTOs().get(0).getIcon());
       weatherDAO.setCode(apiDTO.getWeatherDTOs().get(0).getCode());
       weatherDAO.setHumadity(apiDTO.getMainDTO().getHumadity());
       weatherDAO.setTemprature(apiDTO.getMainDTO().getTemprature());

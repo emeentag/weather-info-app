@@ -18,6 +18,9 @@ public class WeatherDTO {
   @JsonProperty(value = "description")
   private String description;
 
+  @JsonProperty(value = "icon")
+  private String icon;
+
   /**
    * @param code the code to set
    */
@@ -58,6 +61,20 @@ public class WeatherDTO {
    */
   public String getDescription() {
     return description;
+  }
+
+  /**
+   * @param icon the icon to set
+   */
+  public void setIcon(String icon) {
+    this.icon = icon;
+  }
+
+  /**
+   * @return the icon
+   */
+  public String getIcon() {
+    return icon;
   }
 
 }

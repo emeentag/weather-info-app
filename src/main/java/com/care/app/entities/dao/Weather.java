@@ -33,6 +33,9 @@ public class Weather {
   @Column(columnDefinition = "VARCHAR(15)")
   private String description;
 
+  @Column(columnDefinition = "VARCHAR(4)")
+  private String icon;
+
   @Column(columnDefinition = "FLOAT")
   private Float temprature;
 
@@ -207,5 +210,19 @@ public class Weather {
    */
   public Wind getWind() {
     return wind;
+  }
+
+  /**
+   * @param icon the icon to set
+   */
+  public void setIcon(String icon) {
+    this.icon = icon;
+  }
+
+  /**
+   * @return the icon
+   */
+  public String getIcon() {
+    return icon;
   }
 }
