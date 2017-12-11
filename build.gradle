@@ -18,6 +18,14 @@ group = 'com.care'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
+sourceSets {
+    main {
+        java {
+            exclude 'src/main/resources/client/**'
+        }
+    }
+}
+
 tasks.withType(Test) {
 	testLogging {
 		events = ["PASSED", "SKIPPED", "FAILED", "STANDARD_ERROR"]
