@@ -1,5 +1,7 @@
 package com.care.app.entities.dao;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -30,7 +32,7 @@ public class Weather {
   @Column(columnDefinition = "VARCHAR(55)")
   private String definition;
 
-  @Column(columnDefinition = "VARCHAR(15)")
+  @Column(columnDefinition = "VARCHAR(155)")
   private String description;
 
   @Column(columnDefinition = "VARCHAR(4)")
@@ -43,7 +45,10 @@ public class Weather {
   private Short pressure;
 
   @Column(columnDefinition = "TINYINT(3)")
-  private Byte humadity;
+  private Byte humidity;
+
+  @Column(columnDefinition = "TIMESTAMP")
+  private Date queryDateTime;
 
   @Embedded
   private Cloud cloud;
@@ -145,15 +150,15 @@ public class Weather {
   /**
    * @param humadity the humadity to set
    */
-  public void setHumadity(Byte humadity) {
-    this.humadity = humadity;
+  public void setHumidity(Byte humadity) {
+    this.humidity = humadity;
   }
 
   /**
    * @return the humadity
    */
-  public Byte getHumadity() {
-    return humadity;
+  public Byte getHumidity() {
+    return humidity;
   }
 
   /**
@@ -224,5 +229,19 @@ public class Weather {
    */
   public String getIcon() {
     return icon;
+  }
+
+  /**
+   * @param queryDateTime the queryDateTime to set
+   */
+  public void setQueryDateTime(Date queryDateTime) {
+    this.queryDateTime = queryDateTime;
+  }
+
+  /**
+   * @return the queryDateTime
+   */
+  public Date getQueryDateTime() {
+    return queryDateTime;
   }
 }

@@ -16,20 +16,20 @@ public class MainDTO {
   private Short pressure;
 
   @JsonProperty(value = "humidity")
-  private Byte humadity;
+  private Byte humidity;
 
   /**
    * @param humadity the humadity to set
    */
-  public void setHumadity(Byte humadity) {
-    this.humadity = humadity;
+  public void setHumidity(Byte humadity) {
+    this.humidity = humadity;
   }
 
   /**
    * @return the humadity
    */
-  public Byte getHumadity() {
-    return humadity;
+  public Byte getHumidity() {
+    return humidity;
   }
 
   /**

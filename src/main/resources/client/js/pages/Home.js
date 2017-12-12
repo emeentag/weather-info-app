@@ -4,6 +4,39 @@ import React from 'react';
 import axios from 'axios';
 
 import Button from '../components/Button/Button';
+import WeatherWidget from '../widget/Weather';
+
+const dummy = {
+  "id": 1,
+  "code": 800,
+  "definition": "Clear",
+  "description": "clear sky",
+  "icon": "01d",
+  "temprature": 15,
+  "pressure": 1021,
+  "humidity": 72,
+  "queryDateTime": 1513075800000,
+  "cloud": {
+    "percent": 0
+  },
+  "location": {
+    "lng": 28.95,
+    "lat": 41.01
+  },
+  "wind": {
+    "speed": 5.1,
+    "degree": 230
+  },
+  "city": {
+    "id": 1,
+    "cityId": 745044,
+    "countryCode": "TR",
+    "cityName": "Istanbul",
+    "sunrise": 1513056008000,
+    "sunset": 1513089369000,
+    "weathers": null
+  }
+};
 
 const UrlResult = (props) => {
   return (
@@ -13,44 +46,58 @@ const UrlResult = (props) => {
   )
 }
 
+let defaultCities = ["Berlin", "Waltham"];
+
 export default class Home extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
       inProgress: false,
+      cities: [],
       urlResult: null
     }
   }
 
-  doShort(e) {
-    e.preventDefault();
+  componentDidMount() {
+    this.queryDefaultWidgets();
+  }
 
-    let queryUrl;
-    let reqBody;
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.cities.length >= defaultCities.length) {
+      return true;
+    }
+
+    return false;
+  }
+
+  queryDefaultWidgets() {
+
+    defaultCities.forEach((city) => {
+      this.getCityData(city);
+    });
+
+  }
+
+  getCityData(cityName) {
+
+    var temp = this.state.cities;
 
     this.setState({
+      ...this.state,
       inProgress: true
     });
 
-    if (!this.isShort.checked) {
-      queryUrl = "/full";
-      reqBody = {
-        shortUrl: this.searchInput.value,
-      };
-    } else {
-      queryUrl = "/short";
-      reqBody = {
-        urlFull: this.searchInput.value,
-      };
-    }
-
-    axios.post(queryUrl, reqBody)
+    axios.get("/" + cityName)
       .then((response) => {
+
+        temp.push(response.data);
+
         this.setState({
+          ...this.state,
           inProgress: false,
-          urlResult: response.data
-        })
+          cities: temp
+        });
       })
       .catch((error, response) => {
         console.log(error.response)
@@ -61,18 +108,31 @@ export default class Home extends React.Component {
       });
   }
 
+  addCity(e) {
+    e.preventDefault();
+
+    let city = this.searchInput.value;
+
+    this.getCityData(city);
+  }
+
+  getCitiesWidgets() {
+    let cities = this.state.cities.map((city, idx) => {
+      return (
+        <WeatherWidget weather={city} key={idx} />
+      )
+    });
+
+    return cities;
+  }
+
   render() {
     return (
       <div class="section">
         <div class="home-page">
-          <div class="title-container">
-            <h1>
-              <div class="home-title">Url Shorter</div>
-              <div class="home-desc">You can make a short url here.</div>
-            </h1>
-          </div>
+          {this.getCitiesWidgets()}
           <div class="search-container">
-            <form action="#" method="POST" onSubmit={this.doShort.bind(this)}>
+            <form action="#" method="POST" onSubmit={this.addCity.bind(this)}>
               <div class="form-group">
                 <div class="element-container">
                   <input type="text"
@@ -82,14 +142,6 @@ export default class Home extends React.Component {
                     required autoFocus ref={(element) => { this.searchInput = element }}
                     placeholder="Type website domain here."
                   />
-                  <div class="chk-container">
-                    <input type="checkbox"
-                      id="is-short"
-                      name="is-short"
-                      ref={(element) => { this.isShort = element }}
-                      defaultChecked />
-                    <label for="music">Generate short url</label>
-                  </div>
                   <div class="btn-analyse">
                     <Button type='primary' name='Get' loading={this.state.inProgress} />
                   </div>

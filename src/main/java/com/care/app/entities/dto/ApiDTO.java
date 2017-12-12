@@ -1,5 +1,6 @@
 package com.care.app.entities.dto;
 
+import java.util.Date;
 import java.util.List;
 
 import com.care.app.entities.dao.City;
@@ -7,9 +8,11 @@ import com.care.app.entities.dao.Weather;
 import com.care.app.entities.embeddable.Cloud;
 import com.care.app.entities.embeddable.Location;
 import com.care.app.entities.embeddable.Wind;
+import com.care.app.utils.UnixTimestampDeserializer;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -42,6 +45,10 @@ public class ApiDTO {
 
   @JsonProperty(value = "id")
   private Long cityId;
+
+  @JsonProperty(value = "dt")
+  @JsonDeserialize(using = UnixTimestampDeserializer.class)
+  private Date queryDateTime;
 
   /**
    * @param cityId the cityId to set
@@ -155,6 +162,20 @@ public class ApiDTO {
     return windDTO;
   }
 
+  /**
+   * @param queryDateTime the queryDateTime to set
+   */
+  public void setQueryDateTime(Date queryDateTime) {
+    this.queryDateTime = queryDateTime;
+  }
+
+  /**
+   * @return the queryDateTime
+   */
+  public Date getQueryDateTime() {
+    return queryDateTime;
+  }
+
   public static class Map {
 
     public static Weather toDAO(ApiDTO apiDTO) {
@@ -165,9 +186,10 @@ public class ApiDTO {
       weatherDAO.setDescription(apiDTO.getWeatherDTOs().get(0).getDescription());
       weatherDAO.setIcon(apiDTO.getWeatherDTOs().get(0).getIcon());
       weatherDAO.setCode(apiDTO.getWeatherDTOs().get(0).getCode());
-      weatherDAO.setHumadity(apiDTO.getMainDTO().getHumadity());
+      weatherDAO.setHumidity(apiDTO.getMainDTO().getHumidity());
       weatherDAO.setTemprature(apiDTO.getMainDTO().getTemprature());
       weatherDAO.setPressure(apiDTO.getMainDTO().getPressure());
+      weatherDAO.setQueryDateTime(apiDTO.getQueryDateTime());
 
       Cloud cloud = new Cloud();
       cloud.setPercent(apiDTO.getCloudDTO().getPercent());

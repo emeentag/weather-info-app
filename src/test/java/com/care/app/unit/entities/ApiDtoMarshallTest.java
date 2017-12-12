@@ -30,12 +30,13 @@ public class ApiDtoMarshallTest {
     Assert.assertEquals("TR", apiDto.getSysDTO().getCountryCode());
     Assert.assertEquals(Date.from(Instant.ofEpochSecond(1512969570)), apiDto.getSysDTO().getSunrise());
     Assert.assertEquals(Date.from(Instant.ofEpochSecond(1513002961)), apiDto.getSysDTO().getSunset());
+    Assert.assertEquals(Date.from(Instant.ofEpochSecond(1513005600)), apiDto.getQueryDateTime());
     Assert.assertEquals(Short.valueOf("0"), apiDto.getCloudDTO().getPercent());
     Assert.assertEquals(Float.valueOf(8.7f), apiDto.getWindDTO().getSpeed());
     Assert.assertEquals(Integer.valueOf(210), apiDto.getWindDTO().getDegree());
     Assert.assertEquals(Float.valueOf(287.63f), apiDto.getMainDTO().getTemprature());
     Assert.assertEquals(Short.valueOf("1021"), apiDto.getMainDTO().getPressure());
-    Assert.assertEquals(Byte.valueOf("72"), apiDto.getMainDTO().getHumadity());
+    Assert.assertEquals(Byte.valueOf("72"), apiDto.getMainDTO().getHumidity());
     Assert.assertEquals(Integer.valueOf(800), apiDto.getWeatherDTOs().get(0).getCode());
     Assert.assertEquals("Clear", apiDto.getWeatherDTOs().get(0).getDefinition());
     Assert.assertEquals("clear sky", apiDto.getWeatherDTOs().get(0).getDescription());

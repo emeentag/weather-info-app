@@ -47,7 +47,7 @@ public class WeatherServiceTest {
     Assert.assertEquals(Integer.valueOf(210), apiDto.getWindDTO().getDegree());
     Assert.assertEquals(Float.valueOf(287.63f), apiDto.getMainDTO().getTemprature());
     Assert.assertEquals(Short.valueOf("1021"), apiDto.getMainDTO().getPressure());
-    Assert.assertEquals(Byte.valueOf("72"), apiDto.getMainDTO().getHumadity());
+    Assert.assertEquals(Byte.valueOf("72"), apiDto.getMainDTO().getHumidity());
     Assert.assertEquals(Integer.valueOf(800), apiDto.getWeatherDTOs().get(0).getCode());
     Assert.assertEquals("Clear", apiDto.getWeatherDTOs().get(0).getDefinition());
     Assert.assertEquals("clear sky", apiDto.getWeatherDTOs().get(0).getDescription());
@@ -67,7 +67,7 @@ public class WeatherServiceTest {
     Assert.assertEquals(Integer.valueOf(210), weather.getWind().getDegree());
     Assert.assertEquals(Float.valueOf(287.63f), weather.getTemprature());
     Assert.assertEquals(Short.valueOf("1021"), weather.getPressure());
-    Assert.assertEquals(Byte.valueOf("72"), weather.getHumadity());
+    Assert.assertEquals(Byte.valueOf("72"), weather.getHumidity());
     Assert.assertEquals(Integer.valueOf(800), weather.getCode());
     Assert.assertEquals("Clear", weather.getDefinition());
     Assert.assertEquals("clear sky", weather.getDescription());

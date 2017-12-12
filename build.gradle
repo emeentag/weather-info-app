@@ -20,8 +20,8 @@ sourceCompatibility = 1.8
 
 sourceSets {
     main {
-        java {
-            exclude 'src/main/resources/client/**'
+        resources {
+            exclude 'client/**'
         }
     }
 }

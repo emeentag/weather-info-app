@@ -3,7 +3,6 @@ body {
   -webkit-font-smoothing: antialiased !important;
   color: #7e7e83;
   font-size: 14px;
-  font-weight: 200;
 }
  
 #app {
@@ -13,7 +12,8 @@ body {
     height: 100%;
     
     h1, h2, h3, h4, h5 {
-      font-weight: 200;
+      font-weight: 400;
+      margin: 5px 0;
     }
 
     a:active, a:visited, a:link {
