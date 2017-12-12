@@ -27,7 +27,6 @@ nbdist/
 bin/
 build/
 gradle/
-/src/main/resources/static
 /src/main/resources/client/node_modules
 src/main/resources/client/package-lock.json
 src/main/resources/client/js/components/.DS_Store

@@ -86,7 +86,7 @@ public class AppControllerTest {
     BDDMockito.given(this.weatherService.getWeather("Istanbul")).willReturn(weather);
 
     this.mockMvc
-        .perform(MockMvcRequestBuilders.get("/Istanbul").accept(MediaType.APPLICATION_JSON_VALUE)
+        .perform(MockMvcRequestBuilders.get("/api/Istanbul").accept(MediaType.APPLICATION_JSON_VALUE)
             .contentType(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(MockMvcResultMatchers.content().json(mapper.writeValueAsString(weather)));

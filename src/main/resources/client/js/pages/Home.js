@@ -88,7 +88,9 @@ export default class Home extends React.Component {
       inProgress: true
     });
 
-    axios.get("/" + cityName)
+    axios.get("/api/" + cityName, {
+      headers: { 'Accept': 'application/json' }
+    })
       .then((response) => {
 
         temp.push(response.data);
