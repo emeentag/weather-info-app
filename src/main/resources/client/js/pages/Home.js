@@ -140,10 +140,10 @@ export default class Home extends React.Component {
                     name="search"
                     class="form-control search-input"
                     required autoFocus ref={(element) => { this.searchInput = element }}
-                    placeholder="Type website domain here."
+                    placeholder="Type city name here."
                   />
                   <div class="btn-analyse">
-                    <Button type='primary' name='Get' loading={this.state.inProgress} />
+                    <Button type='primary' name='Add' loading={this.state.inProgress} />
                   </div>
                 </div>
               </div>
